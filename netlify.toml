@@ -1,0 +1,8 @@
+[build]
+  base = "./"
+  command = "( echo OSD_API_KEY=$OSD_API_KEY > .env ; npm run prod )"
+  publish = "public"
+
+[build.environment]
+  NODE_VERSION = "12.18.0"
+

@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --hot",
-    "prod": "webpack",
+    "prod": "webpack -p",
+    "help": "webpack --help",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
