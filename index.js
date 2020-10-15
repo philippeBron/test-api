@@ -4,7 +4,12 @@ import $ from 'jquery'
 
 //const OSD_baseUrl = "https://lab-mi.trial.opendatasoft.com/api/records/1.0/search/?"
 //const OSD_apiKey = process.env.OSD_API_KEY
+// Format json opendatasoft
+// { "records": [ { "fields": { "dep": 930, "com": 001 }, ] }
+
 const OSD_baseUrl = "https://api-bacc.herokuapp.com/caracteristiques?"
+// Format json api-bacc
+// [ { "dep": 930, "com": 001, }, ]
 
 $('#button').on('click', () => {
     let villes = $('#villes')
@@ -37,15 +42,15 @@ $('#button').on('click', () => {
     .then(response => response.json())
     .then(json => {
         let communes = []
-        json.records.forEach(element => {
-            if(!communes.find(el => el.codeCommune === element.fields.com)){
+        json.forEach(element => {
+            if(!communes.find(el => el.codeCommune === element.com)){
                 communes.push({
-                    "codeCommune": element.fields.com,
+                    "codeCommune": element.com,
                     "nbAccidents": 1
                 })
             } else {
                 for (let i = 0; i < communes.length; i++) {
-                    if (communes[i].codeCommune === element.fields.com) {
+                    if (communes[i].codeCommune === element.com) {
                         communes[i].nbAccidents += 1
                     }
                 }
@@ -114,37 +119,37 @@ const getListAccident = (codeCommune, ville) => {
     })
     .then(response => response.json())
     .then(json => {
-        json.records.forEach(element => {
+        json.forEach(element => {
             let jour, mois, heure, minute
-            const an = element.fields.an
-            let hrmn = `${element.fields.hrmn}`
+            const an = element.an
+            let hrmn = `${element.hrmn}`
             let lat, long
             
-            if (element.fields.jour < 10) {
-                jour = `0${element.fields.jour}`
+            if (element.jour < 10) {
+                jour = `0${element.jour}`
             } else {
-                jour = element.fields.jour
+                jour = element.jour
             }
-            if (element.fields.mois < 10) {
-                mois = `0${element.fields.mois}`
+            if (element.mois < 10) {
+                mois = `0${element.mois}`
             } else {
-                mois = element.fields.mois
+                mois = element.mois
             }
-            if (element.fields.hrmn < 1000) {
+            if (element.hrmn < 1000) {
                 hrmn = `0${hrmn}`
             } 
             heure = hrmn.slice(0, 2)
             minute = hrmn.slice(2, 4)
             
-            if (element.fields.lat) {
-                lat = `${element.fields.lat}`
+            if (element.lat) {
+                lat = `${element.lat}`
                 lat = `${lat.slice(0, 2)}.${lat.slice(2, lat.length)}`
             } else {
                 lat = '-'
             }
             
-            if (element.fields.long) {
-                long = `${element.fields.long}`
+            if (element.long) {
+                long = `${element.long}`
                 long = `${long.slice(0, 2)}.${long.slice(2, long.length)}`
             } else {
                 long = '-'
