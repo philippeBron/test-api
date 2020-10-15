@@ -1,0 +1,126 @@
+{
+  "nhits": 959,
+  "parameters": {
+    "dataset": "caracteristiques-2018",
+    "timezone": "UTC",
+    "q": "dep=590",
+    "rows": 5,
+    "start": 0,
+    "format": "json"
+  },
+  "records": [
+    {
+      "datasetid": "caracteristiques-2018",
+      "recordid": "bce05ed5a2b94f9d6a555729921fc29862344c83",
+      "fields": {
+        "mois": 2,
+        "hrmn": 1030,
+        "dep": 590,
+        "atm": 7,
+        "long": "0250985",
+        "adr": "Mille Brugghe Straete",
+        "num_acc": 201800020645,
+        "int": 1,
+        "col": 3,
+        "agg": 1,
+        "lat": 5097616,
+        "jour": 18,
+        "an": 18,
+        "com": "641",
+        "lum": 1,
+        "gps": "M"
+      },
+      "record_timestamp": "2020-09-27T09:23:59.700000+00:00"
+    },
+    {
+      "datasetid": "caracteristiques-2018",
+      "recordid": "bf7f31af72e30c6b3227fba6722afa0bbc5fe3de",
+      "fields": {
+        "mois": 4,
+        "hrmn": 1445,
+        "dep": 590,
+        "atm": 1,
+        "long": "0248726",
+        "adr": "Route de furnes",
+        "num_acc": 201800020646,
+        "int": 9,
+        "col": 2,
+        "agg": 1,
+        "lat": 5105660,
+        "jour": 18,
+        "an": 18,
+        "com": "668",
+        "lum": 1,
+        "gps": "M"
+      },
+      "record_timestamp": "2020-09-27T09:23:59.700000+00:00"
+    },
+    {
+      "datasetid": "caracteristiques-2018",
+      "recordid": "b9e0cb5e563528fc538585e1e9235a278edd7149",
+      "fields": {
+        "mois": 7,
+        "hrmn": 2020,
+        "dep": 590,
+        "atm": 1,
+        "long": "0256802",
+        "adr": "rue Saint Antoine",
+        "num_acc": 201800020647,
+        "int": 2,
+        "col": 1,
+        "agg": 1,
+        "lat": 5101987,
+        "jour": 26,
+        "an": 18,
+        "com": "260",
+        "lum": 1,
+        "gps": "M"
+      },
+      "record_timestamp": "2020-09-27T09:23:59.700000+00:00"
+    },
+    {
+      "datasetid": "caracteristiques-2018",
+      "recordid": "342ae274aa651da03d1c6748c19be56fa5043f98",
+      "fields": {
+        "mois": 8,
+        "hrmn": 1850,
+        "dep": 590,
+        "atm": 1,
+        "adr": "rue de la résistance",
+        "num_acc": 201800020648,
+        "int": 1,
+        "col": 7,
+        "agg": 2,
+        "jour": 25,
+        "an": 18,
+        "com": "668",
+        "lum": 1,
+        "gps": "M"
+      },
+      "record_timestamp": "2020-09-27T09:23:59.700000+00:00"
+    },
+    {
+      "datasetid": "caracteristiques-2018",
+      "recordid": "019556c3479fb41404a49ce2d2c9ead08a9041b6",
+      "fields": {
+        "mois": 9,
+        "hrmn": 1024,
+        "dep": 590,
+        "atm": 1,
+        "long": "0255177",
+        "adr": "947",
+        "num_acc": 201800020649,
+        "int": 1,
+        "col": 7,
+        "agg": 1,
+        "lat": 5100344,
+        "jour": 17,
+        "an": 18,
+        "com": "260",
+        "lum": 1,
+        "gps": "M"
+      },
+      "record_timestamp": "2020-09-27T09:23:59.700000+00:00"
+    }
+  ]
+}
