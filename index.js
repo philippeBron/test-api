@@ -2,8 +2,9 @@ import _, { lowerCase } from 'lodash'
 import $ from 'jquery'
 // import CryptoJS from 'crypto-js'
 
-const OSD_baseUrl = "https://lab-mi.trial.opendatasoft.com/api/records/1.0/search/?"
-const OSD_apiKey = process.env.OSD_API_KEY
+//const OSD_baseUrl = "https://lab-mi.trial.opendatasoft.com/api/records/1.0/search/?"
+//const OSD_apiKey = process.env.OSD_API_KEY
+const OSD_baseUrl = "https://api-bacc.herokuapp.com/caracteristiques"
 
 $('#button').on('click', () => {
     let villes = $('#villes')
@@ -28,7 +29,8 @@ $('#button').on('click', () => {
     tableHead.appendChild(header)
 
     const departement = $('#departement').val()
-    const request = `dataset=caracteristiques-2018&rows=10000&apikey=${OSD_apiKey}&q=dep%3D${departement}0`
+    // const request = `dataset=caracteristiques-2018&rows=10000&apikey=${OSD_apiKey}&q=dep%3D${departement}0`
+    const request = `_limit=10000&dep=${departement}0`
     fetch(OSD_baseUrl+request, {
         method: "GET",
     })
@@ -105,7 +107,8 @@ const getListAccident = (codeCommune, ville) => {
     tableHead.appendChild(header)
 
     const departement = $('#departement').val()
-    const request = `dataset=caracteristiques-2018&rows=10000&apikey=${OSD_apiKey}&q=dep%3D${departement}0+com%3D${codeCommune}`
+    // const request = `dataset=caracteristiques-2018&rows=10000&apikey=${OSD_apiKey}&q=dep%3D${departement}0+com%3D${codeCommune}`
+    const request = `_limit=10000&dep=${departement}0&com=${codeCommune}`
     fetch(OSD_baseUrl+request, {
         method: "GET",
     })
