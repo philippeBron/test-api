@@ -4,7 +4,7 @@ import $ from 'jquery'
 
 //const OSD_baseUrl = "https://lab-mi.trial.opendatasoft.com/api/records/1.0/search/?"
 //const OSD_apiKey = process.env.OSD_API_KEY
-const OSD_baseUrl = "https://api-bacc.herokuapp.com/caracteristiques"
+const OSD_baseUrl = "https://api-bacc.herokuapp.com/caracteristiques?"
 
 $('#button').on('click', () => {
     let villes = $('#villes')
