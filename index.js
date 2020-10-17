@@ -7,8 +7,8 @@ import $ from 'jquery'
 // Format json opendatasoft
 // { "records": [ { "fields": { "dep": 930, "com": 001 }, ] }
 
-const OSD_baseUrl = "https://api-bacc.herokuapp.com/caracteristiques?"
-// Format json api-bacc
+const OSD_baseUrl = "https://api-baac.herokuapp.com/caracteristiques?"
+// Format json api-baac
 // [ { "dep": 930, "com": 001, }, ]
 
 $('#button').on('click', () => {
