@@ -164,8 +164,13 @@ const getListAccident = (codeCommune, ville) => {
             const googleMapQuery = `${lat},${long}`
 
             let anchorElem = document.createElement('a');
-            anchorElem.setAttribute("href", googleMapLink + googleMapQuery );
-            anchorElem.innerHTML = googleMapQuery;
+            anchorElem.text = googleMapQuery;
+
+            anchorElem.onclick = () => {
+                var redirectWindow = window.open(googleMapLink + googleMapQuery, '_blank');
+                redirectWindow.location;
+            };
+
             tdGPS.appendChild(anchorElem)
 
             trAccident.appendChild(tdDate)
