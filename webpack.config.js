@@ -16,7 +16,9 @@ let config = {
     },
     devtool: dev ? "cheap-module-eval-source-map" : "source-map",
     devServer: {
-        contentBase: path.resolve(__dirname, './public')
+        contentBase: path.resolve(__dirname, './public'),
+        host: '0.0.0.0',
+        port: 8080
     },
     module: {
         rules: [

@@ -159,7 +159,20 @@ const getListAccident = (codeCommune, ville) => {
             let tdDate = document.createElement('td')
             tdDate.innerHTML = `${jour}-${mois}-20${an} / ${heure}h${minute}`
             let tdGPS = document.createElement('td')
-            tdGPS.innerHTML = `${lat}:${long}`
+
+            const googleMapLink = "https://www.google.com/maps/search/?api=1&query="
+            const googleMapQuery = `${lat},${long}`
+
+            let anchorElem = document.createElement('a');
+            anchorElem.text = googleMapQuery;
+
+            anchorElem.onclick = () => {
+                var redirectWindow = window.open(googleMapLink + googleMapQuery, '_blank');
+                redirectWindow.location;
+            };
+
+            tdGPS.appendChild(anchorElem)
+
             trAccident.appendChild(tdDate)
             trAccident.appendChild(tdGPS)
             dataTable.appendChild(trAccident)
