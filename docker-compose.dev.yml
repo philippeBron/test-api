@@ -1,0 +1,16 @@
+version: "3.5"
+
+services:
+  front-baac:
+    image: node:12
+    container_name: front_baac
+    env_file: .env
+    environment:
+      http_proxy: ${http_proxy}
+      https_proxy: ${https_proxy}
+      no_proxy: ${no_proxy}
+    ports:
+     - "80:8080"
+    volumes:
+      - ./:/app
+    command: '/bin/bash -c "( cd /app ; npm ci ;  npm run dev  )"'
