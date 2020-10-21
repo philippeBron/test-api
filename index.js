@@ -11,6 +11,9 @@ const OSD_baseUrl = "https://api-baac.herokuapp.com/caracteristiques?"
 // Format json api-baac
 // [ { "dep": 930, "com": 001, }, ]
 
+// API key for Open Street Map via Mapbox
+const OSM_apiKey = process.env.OSM_API_KEY
+
 $('#button').on('click', () => {
     let villes = $('#villes')
     villes.empty()
@@ -68,7 +71,7 @@ $('#button').on('click', () => {
 
                 let trVille = document.createElement('tr')
                 trVille.onclick = () => {
-                    getListAccident(commune.codeCommune, nomVille)
+                    getListAccident(commune.codeCommune, nomVille, json.centre, json.contour)
                 }
                 let tdVille = document.createElement('td')
                 tdVille.innerHTML = nomVille
@@ -87,12 +90,14 @@ $('#button').on('click', () => {
     })
 })
 
-const getListAccident = (codeCommune, ville) => {
+const getListAccident = (codeCommune, ville, mapCenter, contourVille) => {
     let accidents = $('#accidents')
     accidents.empty()
-    let tableTitle = document.createElement('h2')
-    tableTitle.innerHTML = `${ville}`
-    accidents.append(tableTitle)
+    let nomVille = $('#nomVille')
+    nomVille.empty()
+    let townTitle = document.createElement('h2')
+    townTitle.innerHTML = `${ville}`
+    nomVille.append(townTitle)
 
     // initialisation du tableau
     let dataTable = document.createElement('table')
@@ -178,10 +183,73 @@ const getListAccident = (codeCommune, ville) => {
             dataTable.appendChild(trAccident)
             accidents.append(dataTable)
         })
+        loadMap(mapCenter, contourVille, json)
     })
     .catch((err) => {
         console.log(err)
     })
+}
+
+const loadMap = (mapCenter, contourVille, data) => {
+    let mapContainer = L.DomUtil.get('mapid')
+    if (mapContainer) {
+        mapContainer._leaflet_id = null
+    }
+    let lat, long
+      
+    let mymap = L.map('mapid').setView([mapCenter.coordinates[1], mapCenter.coordinates[0]], 12)
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: OSM_apiKey
+    }).addTo(mymap)
+
+    data.forEach(element => { 
+        let jour, mois, heure, minute
+        const an = element.an
+        let hrmn = `${element.hrmn}`
+        let lat, long
+        
+        if (element.jour < 10) {
+            jour = `0${element.jour}`
+        } else {
+            jour = element.jour
+        }
+        if (element.mois < 10) {
+            mois = `0${element.mois}`
+        } else {
+            mois = element.mois
+        }
+        if (element.hrmn < 1000) {
+            hrmn = `0${hrmn}`
+        } 
+        heure = hrmn.slice(0, 2)
+        minute = hrmn.slice(2, 4)           
+        if (element.lat) {
+            lat = `${element.lat}`
+            lat = `${lat.slice(0, 2)}.${lat.slice(2, lat.length)}`
+        } else {
+            lat = '-'
+        }
+        
+        if (element.long) {
+            long = `${element.long}`
+            long = `${long.slice(0, 2)}.${long.slice(2, long.length)}`
+        } else {
+            long = '-'
+        }
+
+        if (long !== '-' && lat !== '-') {
+            let marker = L.marker([lat, long]).addTo(mymap)
+            marker.bindPopup(`<b>${jour}-${mois}-20${an} / ${heure}h${minute}</b><br>...`).openPopup()           
+        }
+    })
+
+    let polygon = L.polygon(contourVille.coordinates).addTo(mymap)
 }
 
 function component() {
