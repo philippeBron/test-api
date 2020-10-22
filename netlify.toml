@@ -1,6 +1,6 @@
 [build]
   base = "./"
-  command = "( echo OSD_API_KEY=$OSD_API_KEY > .env ; npm run prod )"
+  command = "( echo OSM_API_KEY=$OSM_API_KEY > .env ; npm run prod )"
   publish = "public"
 
 [build.environment]
