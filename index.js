@@ -183,14 +183,14 @@ const getListAccident = (codeCommune, ville, mapCenter, contourVille) => {
             dataTable.appendChild(trAccident)
             accidents.append(dataTable)
         })
-        loadMap(mapCenter, contourVille, json)
+        loadMap(ville, `${departement}${codeCommune}`, mapCenter, contourVille, json)
     })
     .catch((err) => {
         console.log(err)
     })
 }
 
-const loadMap = (mapCenter, contourVille, data) => {
+const loadMap = (ville, codeCommune, mapCenter, contourVille, data) => {
     let mapContainer = L.DomUtil.get('mapid')
     if (mapContainer) {
         mapContainer._leaflet_id = null
@@ -249,7 +249,21 @@ const loadMap = (mapCenter, contourVille, data) => {
         }
     })
 
-    let polygon = L.polygon(contourVille.coordinates).addTo(mymap)
+    let townGeojson = {
+        "type": "Feature",
+        "properties": {
+          "nom": ville,
+          "code": codeCommune
+        },
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+                contourVille.coordinates[0]
+            ]
+        }
+    }
+
+    L.geoJSON(townGeojson).addTo(mymap)
 }
 
 function component() {
