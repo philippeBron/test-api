@@ -9,6 +9,7 @@ services:
       http_proxy: ${http_proxy}
       https_proxy: ${https_proxy}
       no_proxy: ${no_proxy}
+      OSM_API_KEY: ${OSM_API_KEY}
     ports:
      - "80:8080"
     volumes:
